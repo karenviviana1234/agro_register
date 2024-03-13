@@ -1,6 +1,4 @@
 import { Router } from "express"
-import  {actualizarUsuario, listarUsuarios, buscarUsuario, desactivarUsuario, registrarUsuarios} from '../controllers/UsuariosControllerdevkvd.js'
-import {validarUsuario, validarUsu} from '../../validate/UsuariosValidatekvd.js'
 import { actualizarUsuario,listarUsuarios,registrarUsuarios,desactivarUsuario,actualizarUsuario,buscarUsuario } from "../controllers/UsuariosControllerdevkvd.js"
 
 import {validarUsuario, validarUsu} from '../../validate/UsuariosValidatedevkvd.js'

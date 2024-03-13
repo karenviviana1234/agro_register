@@ -1,6 +1,7 @@
 import express  from 'express' 
 import  body_parser from 'body-parser'
 import rutaValidacion from './src/routes/autotenticaion.route.js'
+import router from '../backends/src/routes/Finca.routes.js'
 
 const servidor = express()
 
@@ -18,6 +19,7 @@ servidor.get('/document',(req,res)=>{
 servidor.use(express.static('./public'));
 
 servidor.use(rutaValidacion)
+servidor.use(router)
 
 
 servidor.listen(3000, () =>{

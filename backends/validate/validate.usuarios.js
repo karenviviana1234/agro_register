@@ -7,7 +7,7 @@ export const validarUsuario = [
         .isLength({ max: 50 })
         .matches(/^[A-Za-z\s]+$/),
 
-    check('apellido', 'El apellido es obligatorio y debe contener solo letras, máximo 50 caracteres')
+    check('apellido', 'El apellido es obligatorio y debe contener solo letras, máximo 50 caracter')
         .not()
         .isEmpty()
         .isLength({ max: 50 })
@@ -19,7 +19,7 @@ export const validarUsuario = [
         .isIn(["administrador", "empleado"]),
         check('estado', 'Estado no existe')
         .not().isEmpty()
-        .isIn(["activo", "inactivo"]),
+        .isIn(["activo", "inactivo"])
 ];
 
 

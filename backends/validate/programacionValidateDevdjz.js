@@ -19,3 +19,5 @@ export const programacionA = [
     check('fecha_fin', 'La fecha de la programacion debe ser YYYY-MM-DD, y no puede contener letras y barras').not().isEmpty().optional().isLength({ max: 20 }).matches(/^\d{4}-\d{2}-\d{2}$/),
     check('estado', 'El estado es obligatorio y solo puede ser "acabo", "noacabo", o "proceso"').isIn(['acabo', 'noacabo', 'proceso'])
 ];
+
+//nn

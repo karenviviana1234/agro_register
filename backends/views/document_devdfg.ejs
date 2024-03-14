@@ -9,7 +9,7 @@
 <body>
     <h1>Documentación de la API TIPO_RECURSO</h1>
     <hr>
-    <h3>Requerimiento 1. Documentacion ENDPOINT REGISTRAR TIPO_RECURSO</h3>
+    <h3>Requerimiento 1. Documentacion ENDPOINT REGISTRAR TIPO_RECURSOs</h3>
     <table>
         <tr><td>Número</td> <td>1</td></tr>
         <tr><td>Nombre del Servicio</td> <td>Registrar Tipo de Recurso</td></tr>
@@ -17,9 +17,9 @@
         <tr><td>Descripción</td>  <td>Permite registrar un nuevo Tipo de Recurso en la base de datos</td></tr>
         <tr><td>Metodo HTTP</td>  <td>POST</td></tr>
         <tr><td>Header</td>  <td>Token:token</td></tr>
-        <tr><td>Usuario</td> <td>Administrador</td></tr>
+        <tr><td>Usuarios</td> <td>Administrador</td></tr>
         <tr><td>Request json</td>  <td>{"nombre_recursos":"abono liquido","cantidad_medida":12, "unidades_medidas":"litro","extras":"mensaje opcional"}</td></tr>
-        <tr><td>Respuesta json</td>  <td>   
+        <tr><td>Respuestas json</td>  <td>   
         Correcto: 
         Status: 200
         json:
@@ -54,10 +54,10 @@
         <tr><td>URL</td>  <td>/actualizarRecurso/:id</td></tr>
         <tr><td>Descripción</td>  <td>Permite actualizar una tipo de recurso existente en la base de datos por medio del id</td></tr>
         <tr><td>Metodo HTTP</td>  <td>PUT</td></tr>
-        <tr><td>Header</td>  <td>Token:token</td></tr>
+        <tr><td>Headers</td>  <td>Token:token</td></tr>
         <tr><td>Usuario</td> <td>Adminitrador</td></tr>
         <tr><td>Request json</td>  <td>{"nombre_recursos":"veneno","cantidad_medida":12, "unidades_medidas":"ml","extras":"mensaje opcional"}</td></tr>
-        <tr><td>Respuesta json</td>  <td>   
+        <tr><td>Respuestas json</td>  <td>   
         Correcto: 
         Status: 200
         json:

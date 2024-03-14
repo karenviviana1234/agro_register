@@ -1,6 +1,6 @@
 import { pool } from "../database/conexion.js"
 import {validationResult} from 'express-validator'
-
+//nn
 
 export const listarlotes = async (req, res) =>{
     try{

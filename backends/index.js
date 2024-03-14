@@ -1,5 +1,6 @@
 import express  from 'express' 
 import  body_parser from 'body-parser'
+<<<<<<< HEAD
 import rutaValidacion from './src/routes/autotenticaion.route.js';
 import rutaUsuario from './src/routes/routes.usuarios.js';
 import rutaCostos from './src/routes/CostosRoutesdevSdva.js';

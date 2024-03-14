@@ -1,6 +1,5 @@
 import express  from 'express' 
 import  body_parser from 'body-parser'
-<<<<<<< HEAD
 import rutaValidacion from './src/routes/autotenticaion.route.js';
 import rutaUsuario from './src/routes/routes.usuarios.js';
 import rutaCostos from './src/routes/CostosRoutesdevSdva.js';
@@ -12,6 +11,7 @@ import rutaProduccion from './src/routes/ProduccionRoutesDevpap.js';
 import rutaProgramacion from './src/routes/programacionRoutesDevdjz.js';
 import rutaDeTipoRecurso from './src/routes/TipoRecurso.route.js';
 import  {rutaDeActividad}  from './src/routes/Actividad.route.js';
+import rutaDeVariedad from './src/routes/variedad.routes.js';
 
 
 const servidor = express()
@@ -41,6 +41,7 @@ servidor.use(rutalote)
 servidor.use(rutaProduccion)
 servidor.use(rutaProgramacion)
 servidor.use(rutaDeTipoRecurso)
+servidor.use(rutaDeVariedad)
 
 
 

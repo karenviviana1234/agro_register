@@ -1,14 +1,7 @@
 import express  from 'express' 
 import  body_parser from 'body-parser'
-<<<<<<< HEAD
-import rutaValidacion from './src/routes/autotenticaion.route.js'
-import router from '../backends/src/routes/Finca.routes.js'
-import rutaUsuario from './src/routes/routes.usuarios.js'
 import rutaValidacion from './src/routes/autotenticaion.route.js';
-=======
-import rutaUsuario from './src/routes/UsuariosRoutesdevkvd.js'
-import rutaValidacion from './src/routes/autotenticaion.route.js'
->>>>>>> devpap
+
 
 const servidor = express()
 

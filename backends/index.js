@@ -4,12 +4,13 @@ import rutaValidacion from './src/routes/autotenticaion.route.js';
 import rutaUsuario from './src/routes/routes.usuarios.js';
 import rutaCostos from './src/routes/CostosRoutesdevSdva.js';
 import rutaCultivo from './src/routes/CultivosRoutesdevSdva.js';
-import router from '/src/routes/Finca.routes.js';
+import router from './src/routes/Finca.routes.js';
 import inversiones from './src/routes/InversionesroutesdevJrl.js';
 import rutalote from './src/routes/lotes.routes.js';
 import rutaProduccion from './src/routes/ProduccionRoutesDevpap.js';
 import rutaProgramacion from './src/routes/programacionRoutesDevdjz.js';
-import { rutaDeTipoRecurso } from './src/routes/TipoRecurso.route.js';
+import rutaDeTipoRecurso from './src/routes/TipoRecurso.route.js';
+import  {rutaDeActividad}  from './src/routes/Actividad.route.js';
 
 
 const servidor = express()
@@ -22,7 +23,7 @@ servidor.use(body_parser.urlencoded({extended: false}))
 servidor.set('view engine', 'ejs');
 servidor.set('views','./views');
 
-servidor.get('/document',(req,res)=>{
+servidor.get('/documents',(req,res)=>{
     res.render('document.ejs');
 })
 
@@ -31,7 +32,8 @@ servidor.use(express.static('./public'));
 servidor.use(rutaValidacion)
 servidor.use(rutaUsuario)
 servidor.use(rutaCostos)
-servidor.use(rutaCultivo)
+servidor.use('/cultivo',rutaCultivo)
+servidor.use(rutaDeActividad)
 servidor.use(router)
 servidor.use(inversiones)
 servidor.use(rutalote)

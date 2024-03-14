@@ -84,7 +84,7 @@ export const Actualizarlote = async (req, res) => {
 export const Buscarlote = async (req, res) => {
     try {
         const { id_lote } = req.params;
-        const [ resultado ] = await pool.query("select * from actividades where id_lote=?", [id_lote])
+        const [ resultado ] = await pool.query("select * from lotes where id_lote=?", [id_lote])
 
         if (resultado.length > 0) {
             res.status(200).json(resultado)

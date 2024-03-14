@@ -1,7 +1,7 @@
 import { Router } from "express"
 import  {actualizarUsuario, listarUsuarios, buscarUsuario, desactivarUsuario, registrarUsuarios} from '../controllers/controller.usuarios.js'
 
-import {validarUsuario, validarUsu} from '../../validate/validate.usuarios.js'
+import {validarUsuario, validarUsu} from '../../validate/UsuariosValidatekvd.js'
 import { validarToken } from '../controllers/autenticacion.js'
 
 const rutaUsuario = Router();

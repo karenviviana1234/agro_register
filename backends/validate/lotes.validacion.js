@@ -7,7 +7,6 @@ check('nombres','es obligatorio').isEmpty().isLength({max:100}),
 check('longitud','es obligatorio') .isFloat({ min: -180, max: 180 }),
 check('latitud','es obligatorio') .isFloat({ min: -80, max: 90 }),
 check('fk_id_finca','es obligartorio el kf_finca').isEmpty() .optional(),
-check('estado','es obligartorio el estado').isEmpty(),
 ];
 //nn
 
@@ -17,6 +16,5 @@ export const validarlotesactualizar=[
     check('longitud','es obligatorio') .isFloat({ min: -180, max: 180 }) .optional(),
     check('latitud','es obligatorio') .isFloat({ min: -80, max: 90 }) .optional(),
     check('fk_id_finca','es obligartorio el kf_finca').isEmpty() .optional(),
-    check('estado','es obligartorio el estado').isEmpty() .optional(),
     ]
     

@@ -29,10 +29,10 @@ export const RegistroTipoRecurso = async (req, res) => {
                 return res.status(400).json(errors);
             }
            
-        const { nombre_recursos, cantidad_medida, unidades_medidas,extras } = req.body;
+        const { nombre_recursos, cantidad_medida, unidades_medida,extras } = req.body;
 
 
-        const [result] = await pool.query("INSERT INTO tipo_recursos (nombre_recursos, cantidad_medida, unidades_medidas,extras) VALUES (?, ?, ?, ?)", [nombre_recursos, cantidad_medida, unidades_medidas,extras]);
+        const [result] = await pool.query("INSERT INTO tipo_recursos (nombre_recursos, cantidad_medida, unidades_medida,extras) VALUES (?, ?, ?, ?)", [nombre_recursos, cantidad_medida, unidades_medida,extras]);
         
         if (result.affectedRows > 0) {
             res.status(200).json({
@@ -62,7 +62,7 @@ export const ActualizarTipoRecurso = async (req, res) => {
                 return res.status(400).json(errors);
             }
         const { id } = req.params;
-        const { nombre_recursos, cantidad_medida, unidades_medidas,extras  } = req.body;
+        const { nombre_recursos, cantidad_medida, unidades_medida,extras  } = req.body;
 
         console.log("Consulta SQL:", `SELECT * FROM tipo_recursos WHERE id_tipo_recursos=${id}`);
 
@@ -71,7 +71,7 @@ export const ActualizarTipoRecurso = async (req, res) => {
         
 
         const [result] = await pool.query(
-            `UPDATE tipo_recursos SET nombre_recursos = ${nombre_recursos ? `'${nombre_recursos}'` : `'${oldRecurso[0].nombre_recursos}'`}, cantidad_medida = ${cantidad_medida ? `'${cantidad_medida}'` : `'${oldRecurso[0].cantidad_medida}'`}, unidades_medidas = ${unidades_medidas ? `'${unidades_medidas}'` : `'${oldRecurso[0].unidades_medidas}'`}, extras = ${extras ? `'${extras}'` : `'${oldRecurso[0].extras}'`} WHERE id_tipo_recursos = ?`,
+            `UPDATE tipo_recursos SET nombre_recursos = ${nombre_recursos ? `'${nombre_recursos}'` : `'${oldRecurso[0].nombre_recursos}'`}, cantidad_medida = ${cantidad_medida ? `'${cantidad_medida}'` : `'${oldRecurso[0].cantidad_medida}'`}, unidades_medida= ${unidades_medida ? `'${unidades_medida}'` : `'${oldRecurso[0].unidades_medida}'`}, extras = ${extras ? `'${extras}'` : `'${oldRecurso[0].extras}'`} WHERE id_tipo_recursos = ?`,
             [id]
         );
         

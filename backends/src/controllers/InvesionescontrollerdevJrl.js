@@ -1,6 +1,7 @@
 import { pool } from "../database/conexion.js";
 import { validationResult } from 'express-validator';
 
+//nn
 export const listarInversiones = async (req, res) => {
     try {
         const [listar] = await pool.query('SELECT * FROM inversiones');

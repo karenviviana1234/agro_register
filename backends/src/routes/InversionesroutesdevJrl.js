@@ -13,4 +13,5 @@ inversiones.put('/ActualizarInversion/:id_Inversiones',validarToken,actualizar, 
 
 
 export default inversiones
+//nn
 

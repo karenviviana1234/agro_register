@@ -1,5 +1,5 @@
 import { Router } from "express";
-import {registrar,  actualizar,  buscar, listar, desactivar } from '../controller/CultivosControllerdevSdva.js';
+import {registrar,  actualizar,  buscar, listar, desactivar } from '../controllers/CultivosControllerdevSdva.js';
 import { validacionCultivosA, validacionCultivosR } from "../../validate/CultivosValidatedevSdva.js";
 import { validarToken } from "../controllers/autenticacion.js"; 
 

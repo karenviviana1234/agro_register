@@ -21,6 +21,7 @@ export const listarTipoRecurso = async (req, res) => {
     }
 }
 //crud Registrar
+//crud
 export const RegistroTipoRecurso = async (req, res) => {
     try {
             const errors= validationResult(req);

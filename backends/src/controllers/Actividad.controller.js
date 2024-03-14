@@ -2,6 +2,7 @@ import { pool } from "../database/conexion.js";
 import { validationResult } from 'express-validator';
 
 //crud listar
+//listar
 export const listarA = async (req, res) => {
     try {
         const [result] = await pool.query("SELECT * FROM actividad")

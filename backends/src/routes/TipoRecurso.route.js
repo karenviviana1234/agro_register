@@ -17,3 +17,4 @@ rutaDeTipoRecurso.get("/buscarRecurso/:id", validarToken, BuscarTipoRecurso);
 
 export { rutaDeTipoRecurso };
 
+//crud

@@ -14,3 +14,4 @@ rutaDeActividad.put("/Desactivara/actividad/:id",validarToken, DesactivarA);
 rutaDeActividad.get("/Buscar/actividad/:id",validarToken, BuscarA);
 
 export { rutaDeActividad };
+//crud

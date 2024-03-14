@@ -1,6 +1,7 @@
 import { pool } from "../database/conexion.js";
 import { validationResult } from 'express-validator';
 
+//git crud
 //crud listar
 export const listarTipoRecurso = async (req, res) => {
     try {

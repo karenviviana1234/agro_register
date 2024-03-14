@@ -1,8 +1,7 @@
 import express  from 'express' 
 import  body_parser from 'body-parser'
 import rutaValidacion from './src/routes/autotenticaion.route.js'
-import rutaUsuario from './src/routes/UsuariosRoutesdevkvd.js'
-import rutaValidacion from './src/routes/autotenticaion.routedevkvd.js'
+
 
 const servidor = express()
 

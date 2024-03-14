@@ -1,6 +1,6 @@
 import { pool } from "../database/conexion.js";
 import  Jwt  from "jsonwebtoken";
-//auth
+
 export const validar = async (req, res) => {
 
     try {

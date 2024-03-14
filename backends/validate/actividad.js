@@ -17,7 +17,7 @@ export const validarRA = [
         check('tiempo', 'El campo de tiempo es obligatorio y debe tener el formato HH:MM:SS').optional().not().isEmpty().matches(/^([01]?[0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]$/),
         check('observaciones', 'El campo de observaciones debe tener máximo 255 caracteres')
         .optional().matches(/^[a-zA-Z]+[a-zA-Z0-9\s\S]{0,254}$/),    
-        check('fk_id_variedad', 'El campo de identificación de variedad debe ser un número entero').optional().isNumeric(),
-        check('valor_actividad', 'El campo de valor de actividad debe ser un número decimal').optional().isNumeric()
+        check('fk_id_variedad', 'El campo de identificación de variedad debe ser un número enteros').optional().isNumeric(),
+        check('valor_actividad', 'El campo de valor de actividad debe ser un número decimales').optional().isNumeric()
     ];
     

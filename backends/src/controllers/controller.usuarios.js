@@ -1,7 +1,7 @@
 import {pool} from '../database/conexion.js'
 import { validationResult } from "express-validator"
 
-
+//crud
 export const listarUsuarios = async (req, res) => {
     try {
         const [ result ] = await pool.query('SELECT * FROM usuarios');

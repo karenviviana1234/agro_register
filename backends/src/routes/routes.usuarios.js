@@ -14,3 +14,4 @@ rutaUsuario.get('/buscarUsuarios/:id_usuario',validarToken, buscarUsuario);
 
 
 export default rutaUsuario;
+//route

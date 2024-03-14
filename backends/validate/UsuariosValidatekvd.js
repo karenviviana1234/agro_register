@@ -22,7 +22,7 @@ export const validarUsuario = [
         .isIn(["activo", "inactivo"]),
 ];
 
-
+//val
     
 
     export const validarUsu = [

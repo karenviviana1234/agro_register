@@ -1,9 +1,7 @@
 import { pool } from "../database/conexion.js";
 import  Jwt  from "jsonwebtoken";
-<<<<<<< HEAD
-=======
+
 //nn
->>>>>>> devkvd
 
 export const validar = async (req, res) => {
 

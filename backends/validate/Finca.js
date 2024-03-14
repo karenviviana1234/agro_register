@@ -11,6 +11,7 @@ export const validarFincaR = [
 ];
 
 // ACTUALIZAR
+//nn
 export const validarFincaA = [
     check('nombre_finca', 'El nombre de la finca debe tener máximo 100 caracteres y solo puede contener letras y espacios')
         .optional({ nullable: true })

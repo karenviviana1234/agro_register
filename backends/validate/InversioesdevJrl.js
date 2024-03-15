@@ -12,3 +12,4 @@ export const actualizar =[
     check('fk_id_programacion','ingrese el id de algun recurso y solo recibe numeros').optional().isInt().isNumeric(),
     check('egresos', 'solo recibe numeros').optional().notEmpty().isFloat()
 ]
+//nn

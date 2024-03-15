@@ -1,7 +1,7 @@
 import express  from 'express' 
 import  body_parser from 'body-parser'
 import rutaValidacion from './src/routes/autotenticaion.route.js'
-import inversiones from './src/routes/InversionesroutesdevJrl.js'
+
 
 const servidor = express()
 
@@ -19,7 +19,7 @@ servidor.get('/document',(req,res)=>{
 servidor.use(express.static('./public'));
 
 servidor.use(rutaValidacion)
-servidor.use(inversiones)
+
 
 
 servidor.listen(3000, () =>{

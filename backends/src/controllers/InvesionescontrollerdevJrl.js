@@ -95,33 +95,36 @@ export const actualizarInversiones = async (req, res) => {
             return res.status(400).json({ error: error.array() });
         }
 
-        const {id_Inversiones} = req.params
+        const { id_Inversiones } = req.params;
         const { fk_id_programacion, egresos } = req.body;
 
-        // Verificar si el fk_id_programacion existe
-        const [loteExist] = await pool.query('SELECT * FROM programacion WHERE id_programacion = ?', [fk_id_programacion]);
+        const [addInversiones] = await pool.query('SELECT * FROM inversiones WHERE id_inversiones=?', [id_Inversiones]);
 
-        if (loteExist.length === 0) {
-            return res.status(404).json({
-                status: 404,
-                message: 'la programacion no existe. Registre primero una programacion.'
-            });
+        if (addInversiones.length === 0) {
+            return res.status(400).json({ status: 400, message: 'Inversión no encontrada.' });
         }
-        if (!fk_id_programacion && !egresos) {
+
+        if (fk_id_programacion === undefined && egresos === undefined) {
             return res.status(400).json({
                 message: 'Se requiere uno de los campos para actualizar.'
             });
         }
 
-        const [addInversiones] = await pool.query('SELECT * FROM inversiones WHERE id_inversiones=?', [id_Inversiones]);
+        // Verificar si el fk_id_programacion existe
+        if (fk_id_programacion !== undefined) {
+            const [loteExist] = await pool.query('SELECT * FROM programacion WHERE id_programacion = ?', [fk_id_programacion]);
 
-        if (addInversiones.length === 0) {
-            return res.status(400).json({ status: 400, message: 'inversion no encontrada.' });
+            if (loteExist.length === 0) {
+                return res.status(404).json({
+                    status: 404,
+                    message: 'La programación no existe. Registre primero una programación.'
+                });
+            }
         }
 
         const UpdateValue = {
-            fk_id_programacion: fk_id_programacion || addInversiones[0].fk_id_programacion,
-            egresos: egresos || addInversiones[0].egresos,
+            fk_id_programacion: fk_id_programacion !== undefined ? fk_id_programacion : addInversiones[0].fk_id_programacion,
+            egresos: egresos !== undefined ? egresos : addInversiones[0].egresos,
         };
 
         const updateQuery = 'UPDATE inversiones SET  fk_id_programacion=?, egresos=? WHERE id_inversiones=?';
@@ -146,6 +149,7 @@ export const actualizarInversiones = async (req, res) => {
         });
     }
 };
+
 
 /*
 export const eliminarProduccion = async (req, res) => {

@@ -1,7 +1,7 @@
 import { check } from "express-validator";
 
 export const validarRegistroVariedad = [
-    check('nombre_variedad', 'El nombre de la variedad es obligatorio y debe tener máximo 20 caracteres, y solo debe contener letras')
+    check('nombre_variedad', 'El Nombre de la variedad es obligatorio y debe tener máximo 20 caracteres, y solo debe contener letras')
     .not().isEmpty().withMessage('El nombre de la variedad es obligatorio')
     .isLength({ max: 20 }).withMessage('El nombre de la variedad debe tener máximo 20 caracteres')
     .matches(/^[a-zA-Z\s]+$/).withMessage('El nombre de la variedad solo debe contener letras'),

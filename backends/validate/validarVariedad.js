@@ -11,7 +11,7 @@ export const validarRegistroVariedad = [
     .isIn(['alimentarios', 'textiles', 'oleaginosos', 'ornamentales', 'industriales']).withMessage('El tipo de cultivo no es válido')
 ];
 
-// Validación para actualizar
+//validación para actualizar la variedad de un cultivo
 export const validarActualizacionVariedad = [
     check('nombre_variedad', 'El nombre de la variedad debe tener máximo 20 caracteres, y solo puede contener letras y espacios')
     .optional().isLength({ max: 20 }).withMessage('El nombre de la variedad debe tener máximo 20 caracteres')

@@ -7,22 +7,20 @@
     <link rel="stylesheet" href="../public/style.css">
 </head>
 <body>
-    //4
-    <h1>Documentación de la API COSTOS</h1>
+    <h1>Documentación de la API INVERSIONES</h1>
     <hr>
-    <h3>Requerimiento 1. Documentacion ENDPOINT REGISTRAR COSTOS</h3>
+    <h3>Requerimiento 1. Documentacion ENDPOINT REGISTRAR INVERSIONES</h3>
     <table>
         <tr><td>Número</td> <td>1</td></tr>
-        <tr><td>Nombre del Servicio</td> <td>Registrar costos</td></tr>
-        <tr><td>URL</td>  <td>/registrarCosto</td></tr>
-        <tr><td>Descripción</td>  <td>Permite registrar un nuevo costo en la base de datos</td></tr>
+        <tr><td>Nombre del Servicio</td> <td>Registrar inversiones</td></tr>
+        <tr><td>URL</td>  <td>/registrarInversiones</td></tr>
+        <tr><td>Descripción</td>  <td>Permite registrar una nueva inversion en la base de datos</td></tr>
         <tr><td>Metodo HTTP</td>  <td>POST</td></tr>
         <tr><td>Usuarios</td><td>Administrador</td></tr>
         <tr><td>Header</td>  <td>token:token</td></tr>
         <tr><td>Request json</td>  <td>{
-            "fk_id_lotes": 1,
-            "fk_id_recursos": 1,
-            "egresos":756.8656
+            "fk_id_programacion":"1",
+            "egresos": "38.000"
         }</td></tr>
         <tr><td>Respuesta json</td>  <td>   
         Correcto: 
@@ -61,19 +59,18 @@
     <tr><td>Desarrollador</td><td>Jose Ronaldo Ledezma - devjrl</td></tr>
     </table>
     <br>
-    <h3>Requerimiento 2. Documentacion ENDPOINT ACTUALIZAR COSTOS</h3>
+    <h3>Requerimiento 2. Documentacion ENDPOINT ACTUALIZAR INVERSIONES</h3>
     <table>
         <tr><td>Número</td> <td>2</td></tr>
-        <tr><td>Nombre del Servicio</td>  <td>Actualizar costos</td></tr>
-        <tr><td>URL</td>  <td>/ActualizarCosto/:id_costos</td></tr>
-        <tr><td>Descripción</td>  <td>Permite actualizar un costo existente en la base de datos</td></tr>
+        <tr><td>Nombre del Servicio</td>  <td>Actualizar inversiones</td></tr>
+        <tr><td>URL</td>  <td>/ActualizarInversiones/:id_Inversiones</td></tr>
+        <tr><td>Descripción</td>  <td>Permite actualizar una inversion existente en la base de datos</td></tr>
         <tr><td>Metodo HTTP</td>  <td>PUT</td></tr>
         <tr><td>Usuarios</td><td>Administrador</td></tr>
         <tr><td>Header</td>  <td>token:token</td></tr>
         <tr><td>Request json</td>  <td>{
-            "fk_id_lotes": 1,
-            "fk_id_recursos": 1,
-            "egresos":34.000
+            "fk_id_programacion":"1",
+            "egresos": "38.000"
         }</td></tr>
         <tr><td>Respuesta json</td>  <td>   
         Correcto: 
@@ -81,15 +78,15 @@
         json:
         {
             "status": 200,
-            "message": "ha sido actualizado",
+            "message": "Ha sido actualizado",
         }
     <br>
     Incorrecto:
     
-    Status: 404
+    Status: 400
     body:{
-        "status": 404,
-        "message" : "costo no encontrado"
+        "status": 400,
+        "message" : "No se encontraron resultados para la actualización."
     }
     <br>
     Error: 
@@ -103,32 +100,29 @@
     <tr><td>Desarrollador</td><td>Jose Ronaldo Ledezma - devjrl</td></tr>
     </table>
     
-    <h3>Requerimiento 4. Documentacion ENDPOINT BUSCAR UN COSTO</h3>
+    <h3>Requerimiento 4. Documentacion ENDPOINT BUSCAR UN INVERSIONES</h3>
     <table>
         <tr><td>Número</td> <td>4</td></tr>
-        <tr><td>Nombre del Servicio</td>  <td>Buscar un costo</td></tr>
-        <tr><td>URL</td>  <td>/BuscarCosto</td></tr>
-        <tr><td>Descripción</td>  <td>Permite buscar un costo por su id en la base de datos</td></tr>
+        <tr><td>Nombre del Servicio</td>  <td>Buscar un inversiones</td></tr>
+        <tr><td>URL</td>  <td>BuscarInversion/:id_Inversiones</td></tr>
+        <tr><td>Descripción</td>  <td>Permite buscar una inversion por su id en la base de datos</td></tr>
         <tr><td>Metodo HTTP</td>  <td>GET</td></tr>
         <tr><td>Usuarios</td><td>Administrador</td></tr>
         <tr><td>Header</td>  <td>token:token</td></tr>
-        <tr><td>Request json</td>  <td>{
-            "id_costos":1
-        }</td></tr>
-        <tr><td>Respuesta json</td>  <td>   
+        <tr><td>Request json</td>  <td>Null></td></tr>
+        <tr><td>Respuesta json</td>Null<td>   
         Correcto: 
         Status: 200
         json:
         {
             "resultado": [
                 {
-                    "id_costos": 1,
-                    "fk_id_lotes": 1,
-                    "fk_id_recursos": 1,
-                    "egresos": 77
+                    "id_inversiones": 1,
+                    "egresos": 38,
+                    "fk_id_programacion": 1
                 }
             ]
-        }
+        }        
     <br>
     Incorrecto:
     
@@ -148,12 +142,12 @@
     </td></tr>
     <tr><td>Desarrollador</td><td>Jose Ronaldo Ledezma - devjrl</td></tr>
     </table>
-    <h3>Requerimiento 5. Documentacion ENDPOINT LISTAR COSTOS</h3>
+    <h3>Requerimiento 5. Documentacion ENDPOINT LISTAR INVERSIONES</h3>
     <table>
         <tr><td>Número</td> <td>5</td></tr>
-        <tr><td>Nombre del Servicio</td>  <td>Listar costos</td></tr>
-        <tr><td>URL</td>  <td>/usuarios</td></tr>
-        <tr><td>Descripción</td>  <td>Permite obtener una lista de todos los costos registradas en la base de datos</td></tr>
+        <tr><td>Nombre del Servicio</td>  <td>Listar inversiones</td></tr>
+        <tr><td>URL</td>  <td>/inversiones</td></tr>
+        <tr><td>Descripción</td>  <td>Permite obtener una lista de todas las inversiones registradas en la base de datos</td></tr>
         <tr><td>Metodo HTTP</td>  <td>GET</td></tr>
         <tr><td>Usuarios</td><td>Administrador</td></tr>
         <tr><td>Header</td>  <td>token:token</td></tr>
@@ -163,26 +157,29 @@
         Status: 200
         json:
         [
-	{
-		"id_costos": 1,
-		"fk_id_lotes": 1,
-		"fk_id_recursos": 1,
-		"egresos": 77
-	},
-	{
-		"id_costos": 28,
-		"fk_id_lotes": 1,
-		"fk_id_recursos": 1,
-		"egresos": 756.866
-	}
-]
+	        {
+	        	"id_inversiones": 1,
+	        	"egresos": 5,
+	        	"fk_id_programacion": 1
+	        },
+	        {
+	        	"id_inversiones": 2,
+	        	"egresos": 34,
+	        	"fk_id_programacion": 1
+	        },
+	        {
+	        	"id_inversiones": 3,
+	        	"egresos": 34,
+	        	"fk_id_programacion": 1
+	        }
+        ]
     <br>
     Incorrecto:
     
     Status: 404
     body:{
         "status": 404,
-        "message" : "no hay ningun costo"
+        "message" : "no hay ninguna inversion"
     }
     <br>
     Error: 

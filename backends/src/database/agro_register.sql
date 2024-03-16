@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 16-03-2024 a las 02:01:13
+-- Tiempo de generación: 16-03-2024 a las 21:50:12
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -43,7 +43,9 @@ CREATE TABLE `actividad` (
 
 INSERT INTO `actividad` (`id_actividad`, `nombre_actividad`, `tiempo`, `observaciones`, `valor_actividad`, `fk_id_variedad`, `estado`) VALUES
 (1, 'guaañar', '18:32:52', 'bien trabajadito', 2000, 1, 'activo'),
-(2, 'pelar', '18:32:52', 'bien', 89000, 1, 'activo');
+(2, 'pelar', '18:32:52', 'bien', 89000, 1, 'activo'),
+(3, 'abo', '08:30:52', 'trabajadito bien goof', 7888, 2, ''),
+(4, 'abonar', '10:20:50', 'bien', 8000, 2, 'inactivo');
 
 -- --------------------------------------------------------
 
@@ -63,7 +65,8 @@ CREATE TABLE `costos` (
 --
 
 INSERT INTO `costos` (`id_costos`, `precio`, `fk_id_actividad`, `fk_id_tipo_recursos`) VALUES
-(1, 100000, 1, 1);
+(1, 100000, 1, 1),
+(2, 200, 3, 2);
 
 -- --------------------------------------------------------
 
@@ -85,9 +88,10 @@ CREATE TABLE `cultivo` (
 --
 
 INSERT INTO `cultivo` (`id_cultivo`, `fecha_inicio`, `cantidad_sembrada`, `fk_id_lote`, `fk_id_variedad`, `estado`) VALUES
-(1, '2027-10-19', 6, 1, 1, 'activo'),
+(1, '2027-10-19', 6, 8, 2, 'activo'),
 (2, '2023-07-19', 20, 1, 1, 'inactivo'),
-(3, '2027-09-19', 26, 1, 1, 'inactivo');
+(3, '0000-10-19', 6, 8, 2, 'activo'),
+(4, '2024-10-19', 6, 8, 2, 'inactivo');
 
 -- --------------------------------------------------------
 
@@ -107,10 +111,11 @@ CREATE TABLE `finca` (
 --
 
 INSERT INTO `finca` (`id_finca`, `nombre_finca`, `longitud`, `latitud`) VALUES
-(1, 'Margaritas', -74.1235, 4.56789),
+(1, 'San', -74.13, 4.5607),
 (2, 'Nombre de la Finca', -74.1235, 4.56789),
 (3, 'Margarita', -74.123, 4.567),
-(4, 'muralla', 24.89, 89.24);
+(4, 'muralla', 24.89, 89.24),
+(5, 'San pablo', -74.13, 4.5607);
 
 -- --------------------------------------------------------
 
@@ -120,7 +125,6 @@ INSERT INTO `finca` (`id_finca`, `nombre_finca`, `longitud`, `latitud`) VALUES
 
 CREATE TABLE `inversiones` (
   `id_inversiones` int(11) NOT NULL,
-  `fk_id_costos` int(11) NOT NULL,
   `egresos` float NOT NULL,
   `fk_id_programacion` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
@@ -129,9 +133,11 @@ CREATE TABLE `inversiones` (
 -- Volcado de datos para la tabla `inversiones`
 --
 
-INSERT INTO `inversiones` (`id_inversiones`, `fk_id_costos`, `egresos`, `fk_id_programacion`) VALUES
-(1, 0, 30, 1),
-(2, 0, 700, 1);
+INSERT INTO `inversiones` (`id_inversiones`, `egresos`, `fk_id_programacion`) VALUES
+(1, 30, 1),
+(2, 70, 4),
+(3, 70, 4),
+(4, 8000, 4);
 
 -- --------------------------------------------------------
 
@@ -158,7 +164,10 @@ INSERT INTO `lotes` (`id_lote`, `nombre`, `longitud`, `latitud`, `fk_id_finca`, 
 (3, 'tardes', 12.56, 80.78, 2, 'activo'),
 (4, 'tardes', 12.56, 80.78, 4, 'activo'),
 (5, 'tardes', 12.56, 80.78, 4, 'activo'),
-(6, 'tardes', 12.56, 80.78, 4, 'activo');
+(6, 'al', 12.78, 80.87, 5, 'activo'),
+(7, 'amarillo ', 12.78, 80.87, 3, 'activo'),
+(8, 'amarillo ', 12.78, 80.87, 3, 'activo'),
+(9, 'al', 12.78, 80.87, 5, 'activo');
 
 -- --------------------------------------------------------
 
@@ -178,7 +187,8 @@ CREATE TABLE `produccion` (
 --
 
 INSERT INTO `produccion` (`id_producccion`, `cantidad_produccion`, `precio`, `fk_id_programacion`) VALUES
-(1, 8000000, 1, 1);
+(1, 8000000, 1, 1),
+(2, 5000, 900, 2);
 
 -- --------------------------------------------------------
 
@@ -202,7 +212,9 @@ CREATE TABLE `programacion` (
 
 INSERT INTO `programacion` (`id_programacion`, `fecha_inicio`, `fecha_fin`, `estado`, `fk_id_usuario`, `fk_id_actividad`, `fk_id_cultivo`) VALUES
 (1, '2024-03-12', '2024-03-22', 'activo', 1, 2, 1),
-(2, '2024-06-11', '2024-11-12', '', 4, 1, 2);
+(2, '2022-06-10', '2022-09-09', '', 4, 2, 3),
+(3, '2022-06-11', '2022-09-10', '', 4, 2, 3),
+(4, '2022-02-11', '2022-02-12', '', 4, 2, 2);
 
 -- --------------------------------------------------------
 
@@ -224,7 +236,9 @@ CREATE TABLE `tipo_recursos` (
 
 INSERT INTO `tipo_recursos` (`id_tipo_recursos`, `nombre_recursos`, `cantidad_medida`, `unidades_medida`, `extras`) VALUES
 (1, 'abono', 1, 'g', 'nada'),
-(2, 'liquido', 10, 'kg', 'mensaje opcional');
+(2, 'liquido', 10, 'kg', 'mensaje opcional'),
+(3, 'fertilizante', 12, 'litro', 'no se necesito nada mas'),
+(4, 'fertilizante', 12, 'litro', 'no se necesito nada mas');
 
 -- --------------------------------------------------------
 
@@ -260,7 +274,7 @@ INSERT INTO `usuarios` (`id_usuario`, `nombre`, `apellido`, `correo`, `password`
 
 CREATE TABLE `variedad` (
   `id_variedad` int(11) NOT NULL,
-  `nombre_variedad` int(11) NOT NULL,
+  `nombre_variedad` varchar(50) NOT NULL,
   `tipo_cultivo` enum('alimentarios','textiles','oleaginosos','ornamentales','industriales') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
@@ -269,8 +283,9 @@ CREATE TABLE `variedad` (
 --
 
 INSERT INTO `variedad` (`id_variedad`, `nombre_variedad`, `tipo_cultivo`) VALUES
-(1, 0, 'alimentarios'),
-(2, 0, 'alimentarios');
+(1, '0', 'alimentarios'),
+(2, '0', 'alimentarios'),
+(3, 'cebolla', 'alimentarios');
 
 --
 -- Índices para tablas volcadas
@@ -310,7 +325,6 @@ ALTER TABLE `finca`
 --
 ALTER TABLE `inversiones`
   ADD PRIMARY KEY (`id_inversiones`),
-  ADD KEY `inversiones_costos` (`fk_id_costos`),
   ADD KEY `inversiones_cultivos` (`fk_id_programacion`);
 
 --
@@ -362,55 +376,55 @@ ALTER TABLE `variedad`
 -- AUTO_INCREMENT de la tabla `actividad`
 --
 ALTER TABLE `actividad`
-  MODIFY `id_actividad` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_actividad` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `costos`
 --
 ALTER TABLE `costos`
-  MODIFY `id_costos` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_costos` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `cultivo`
 --
 ALTER TABLE `cultivo`
-  MODIFY `id_cultivo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_cultivo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `finca`
 --
 ALTER TABLE `finca`
-  MODIFY `id_finca` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_finca` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `inversiones`
 --
 ALTER TABLE `inversiones`
-  MODIFY `id_inversiones` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_inversiones` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `lotes`
 --
 ALTER TABLE `lotes`
-  MODIFY `id_lote` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_lote` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `produccion`
 --
 ALTER TABLE `produccion`
-  MODIFY `id_producccion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_producccion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `programacion`
 --
 ALTER TABLE `programacion`
-  MODIFY `id_programacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_programacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `tipo_recursos`
 --
 ALTER TABLE `tipo_recursos`
-  MODIFY `id_tipo_recursos` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_tipo_recursos` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
@@ -422,7 +436,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `variedad`
 --
 ALTER TABLE `variedad`
-  MODIFY `id_variedad` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_variedad` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Restricciones para tablas volcadas

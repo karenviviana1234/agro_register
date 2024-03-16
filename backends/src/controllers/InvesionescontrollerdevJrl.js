@@ -98,7 +98,11 @@ export const actualizarInversiones = async (req, res) => {
 
         const {id_Inversiones} = req.params
         const { fk_id_programacion, egresos } = req.body;
-
+        if (!fk_id_programacion && !egresos) {
+            return res.status(400).json({
+                message: 'Se requiere uno de los campos para actualizar.'
+            });
+        }
         // Verificar si el fk_id_programacion existe
         const [loteExist] = await pool.query('SELECT * FROM programacion WHERE id_programacion = ?', [fk_id_programacion]);
 
@@ -108,11 +112,7 @@ export const actualizarInversiones = async (req, res) => {
                 message: 'la programacion no existe. Registre primero una programacion.'
             });
         }
-        if (!fk_id_programacion && !egresos) {
-            return res.status(400).json({
-                message: 'Se requiere uno de los campos para actualizar.'
-            });
-        }
+      
 
         const [addInversiones] = await pool.query('SELECT * FROM inversiones WHERE id_inversiones=?', [id_Inversiones]);
 

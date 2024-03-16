@@ -56,8 +56,10 @@ export const listar = async (req,res) => {
   export const actualizar = async (req, res) => {
     try {
         const { id_cultivo } = req.params;
-        const { fecha_inicio, cantidad_sembrada, fk_id_lote, fk_id_variedad, estado, fk_id_tipo_recursos } = req.body;
-
+        const { fecha_inicio, cantidad_sembrada, fk_id_lote, fk_id_variedad, estado } = req.body;
+        if (!fecha_inicio && !cantidad_sembrada && !fk_id_lote && !fk_id_variedad && !estado ) {
+            return res.status(400).json({ message: 'Al menos uno de los campos (fecha_inicio, cantidad_sembrada, fk_id_lote, fk_id_variedad, estado) debe estar presente en la solicitud para realizar la actualización.' });
+        }
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
             return res.status(400).json({ errors: errors.array() });

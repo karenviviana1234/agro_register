@@ -56,7 +56,9 @@ export const listar = async (req,res) => {
        const { id_costos } = req.params;
        const { precio, fk_id_actividad, fk_id_tipo_recursos } = req.body;
 
-
+       if (!precio && !fk_id_actividad && !fk_id_actividad ) {
+        return res.status(400).json({ message: 'Al menos uno de los campos (precio, fk_id_actividad, fk_id_tipo_recursos) debe estar presente en la solicitud para realizar la actualización.' });
+    }
        const errors = validationResult(req);
        if (!errors.isEmpty()) {
            return res.status(400).json({ errors: errors.array() });

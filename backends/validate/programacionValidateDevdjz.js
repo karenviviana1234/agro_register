@@ -7,7 +7,7 @@ export const programacionC = [
     check('fk_id_actividad', 'El campo de clave foránea debe contener solo números naturales o el fk_id_actividad no existe').isInt(),
     check('fecha_inicio', 'La fecha de la programacion debe ser YYYY-MM-DD, y no puede contener letras y barras').not().isEmpty().optional().isLength({ max: 20 }).matches(/^\d{4}-\d{2}-\d{2}$/),
     check('fecha_fin', 'La fecha de la programacion debe ser YYYY-MM-DD, y no puede contener letras y barras').not().isEmpty().optional().isLength({ max: 20 }).matches(/^\d{4}-\d{2}-\d{2}$/),
-    check('estado', 'El estado es obligatorio y solo puede ser "acabo", "noacabo", o "proceso"').isIn(['acabo', 'noacabo', 'proceso'])
+    check('estado', 'El estado es obligatorio y solo puede ser "activo", "inactivo"').isIn(['activo', 'inactivo'])
 ];
 
 // Actualizar Asignación

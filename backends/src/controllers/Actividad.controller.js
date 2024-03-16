@@ -43,7 +43,7 @@ export const RegistrarA = async (req, res) => {
          }
         
         
-        const [result] = await pool.query("INSERT INTO actividad (nombre_actividad, tiempo, observaciones, fk_id_variedad, valor_actividad, estado) VALUES (?, ?, ?, ?, ?, ?)", [nombre_actividad, tiempo, observaciones, fk_id_variedad, valor_actividad, esta]);
+        const [result] = await pool.query("INSERT INTO actividad (nombre_actividad, tiempo, observaciones, fk_id_variedad, valor_actividad, estado) VALUES (?, ?, ?, ?, ?, ?)", [nombre_actividad, tiempo, observaciones, fk_id_variedad, valor_actividad, estado]);
 
         if (result.affectedRows > 0) {
             res.status(200).json({
@@ -75,7 +75,9 @@ export const ActualizarA = async (req, res) => {
 
         const { id } = req.params;
         const { nombre_actividad, tiempo, observaciones, fk_id_variedad, valor_actividad  } = req.body;
-
+        if (!nombre_actividad && !tiempo && !observaciones && !fk_id_variedad && !valor_actividad) {
+            return res.status(400).json({ message: 'Al menos uno de los campos (nombre_actividad, tiempo, observaciones, fk_id_variedad, valor_actividad) debe estar presente en la solicitud para realizar la actualización.' });
+        }
         // Realiza una consulta para obtener la variedad de cultivo antes de actualizarla
         const [oldActividad] = await pool.query("SELECT * FROM actividad WHERE id_actividad=?", [id]);
 

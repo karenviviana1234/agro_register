@@ -63,7 +63,9 @@ export const ActualizarTipoRecurso = async (req, res) => {
             }
         const { id } = req.params;
         const { nombre_recursos, cantidad_medida, unidades_medida,extras  } = req.body;
-
+        if (!nombre_recursos && !cantidad_medida && !unidades_medida && !extras ) {
+            return res.status(400).json({ message: 'Al menos uno de los campos ( nombre_recursos, cantidad_medida, unidades_medida,extras) debe estar presente en la solicitud para realizar la actualización.' });
+        }
         console.log("Consulta SQL:", `SELECT * FROM tipo_recursos WHERE id_tipo_recursos=${id}`);
 
         const [oldRecurso] = await pool.query("SELECT * FROM tipo_recursos WHERE id_tipo_recursos=?", [id]);

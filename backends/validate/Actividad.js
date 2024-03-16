@@ -8,7 +8,7 @@ export const validarRR = [
         check('fk_id_variedad', 'El campo de identificación de variedad debe ser un número entero').isInt(),
         check('valor_actividad', 'El campo de valor de actividad debe ser un número').isInt().isNumeric(),
 
-        check('estado', 'El campo de estado debe ser "activo" o "inactivo"').optional().isIn(['activo', 'inactivo'])
+        check('estado', 'El campo de estado debe ser "activo" o "inactivo"').isIn(['activo', 'inactivo'])
     ];
     
 //ACTUALIZAR
@@ -19,6 +19,7 @@ export const validarRA = [
         check('observaciones', 'El campo de observaciones debe tener máximo 255 caracteres')
         .optional().matches(/^[a-zA-Z]+[a-zA-Z0-9\s\S]{0,254}$/),    
         check('fk_id_variedad', 'El campo de identificación de variedad debe ser un número enteros').optional().isNumeric(),
-        check('valor_actividad', 'El campo de valor de actividad debe ser un número decimales').optional().isNumeric()
+        check('valor_actividad', 'El campo de valor de actividad debe ser un número decimales').optional().isNumeric(),
+        check('estado', 'El campo de estado debe ser "activo" o "inactivo"').optional().isIn(['activo', 'inactivo'])
     ];
     

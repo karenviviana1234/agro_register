@@ -61,7 +61,9 @@ export const actualizarVariedad = async (req, res) => {
 
         const { id } = req.params;
         const { nombre_variedad, tipo_cultivo } = req.body;
-
+        if (!nombre_variedad && !tipo_cultivo) {
+            return res.status(400).json({ message: 'Al menos uno de los campos (nombre_variedad, tipo_cultivo) debe estar presente en la solicitud para realizar la actualización.' });
+        }
         // Realiza una consulta para obtener la variedad antes de actualizarla
         const [oldVariedad] = await pool.query("SELECT * FROM variedad WHERE id_variedad=?", [id]);
 

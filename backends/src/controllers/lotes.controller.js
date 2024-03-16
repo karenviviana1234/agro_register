@@ -55,7 +55,10 @@ export const Actualizarlote = async (req, res) => {
         
         const { id_lote } = req.params;
         const { nombre, longitud, latitud, fk_id_finca, estado } = req.body;
-        
+          // Verifica si al menos uno de los campos está presente en la solicitud
+          if (!nombre && !longitud && !latitud && !fk_id_finca && !estado) {
+            return res.status(400).json({ message: 'Al menos uno de los campos (nombre, longitud, latitud, fk_id_finca, estado) debe estar presente en la solicitud para realizar la actualización.' });
+        }
         const [oldUser] = await pool.query("SELECT * FROM lotes WHERE id_lote=?", [id_lote]);
         
         const updateValues = {

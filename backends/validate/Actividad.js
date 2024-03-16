@@ -12,7 +12,6 @@ export const validarRR = [
     ];
     
 //ACTUALIZAR
-//actu
 export const validarRA = [
         check('nombre_actividad').optional().matches(/^[A-Za-zñÑ\s]+$/).withMessage('El campo de actividad solo debe contener letras'),
         check('tiempo', 'El campo de tiempo es obligatorio y debe tener el formato HH:MM:SS').optional().not().isEmpty().matches(/^([01]?[0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]$/),
@@ -22,4 +21,7 @@ export const validarRA = [
         check('valor_actividad', 'El campo de valor de actividad debe ser un número decimales').optional().isNumeric(),
         check('estado', 'El campo de estado debe ser "activo" o "inactivo"').optional().isIn(['activo', 'inactivo'])
     ];
-    
+//desactivar    
+    export const validarD = [
+        check('estado', 'El campo de estado debe ser "activo" o "inactivo"').isIn(['activo', 'inactivo'])
+    ];  

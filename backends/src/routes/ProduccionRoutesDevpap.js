@@ -1,6 +1,6 @@
 import { Router } from "express";
 
-import { BuscarProduccion, actualizarProduccion, listarProduccion, registrarProduccion } from "../controllers/ProduccionControllerDevpap.js";
+import { BuscarProduccion, actualizarProduccion, eliminarProduccion, listarProduccion, registrarProduccion } from "../controllers/ProduccionControllerDevpap.js";
 import { ValidateProduccion, actualizar } from "../../validate/ProduccionValidateDevpap.js";
 import { validarToken } from "../controllers/autenticacion.js";
 
@@ -11,6 +11,7 @@ produccion.get('/listarProduccion',validarToken,listarProduccion);
 produccion.post('/RegistraProduccion',validarToken,ValidateProduccion,registrarProduccion);
 produccion.get('/BuscarProduccion/:id',validarToken,BuscarProduccion);
 produccion.put('/ActualizarProduccion/:id_producccion',validarToken,actualizar,actualizarProduccion);
+produccion.delete('/eliminarProduccion/:id',validarToken,eliminarProduccion)
 export {produccion}
 
 

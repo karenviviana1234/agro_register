@@ -183,20 +183,20 @@ export const actualizarProduccion = async (req, res) => {
 
 export const eliminarProduccion = async (req, res) => {
     try {
-        // Obtiene el ID de la producción desde el header
-        const id_produccion = req.headers['id_produccion'];
+        // Obtiene el ID de la producción 
+        const {id} = req.params;
 
         // Verifica si se proporcionó el ID
-        if (!id_produccion) {
+        if (!id) {
             return res.status(400).json({
                 status: 400,
-                message: 'Se requiere proporcionar el ID de la producción en el header'
+                message: 'Se requiere proporcionar el ID de la producción '
             });
         }
 
         // Realiza la consulta para eliminar la producción con el ID proporcionado
-        const [result] = await pool.query('DELETE FROM produccion WHERE id_produccion = ?', [id_produccion]);
-
+        const [result] = await pool.query('DELETE FROM produccion WHERE id_producccion = ?', [id]);
+        
         // Verifica si se eliminó correctamente
         if (result.affectedRows > 0) {
             res.status(200).json({
@@ -214,5 +214,6 @@ export const eliminarProduccion = async (req, res) => {
             status: 500,
             message: 'Error en el servidor'
         });
+        console.log(error);
     }
 };

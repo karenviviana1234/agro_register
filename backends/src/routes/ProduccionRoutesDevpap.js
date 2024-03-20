@@ -11,7 +11,8 @@ produccion.get('/listarProduccion',validarToken,listarProduccion);
 produccion.post('/RegistraProduccion',validarToken,ValidateProduccion,registrarProduccion);
 produccion.get('/BuscarProduccion/:id',validarToken,BuscarProduccion);
 produccion.put('/ActualizarProduccion/:id_producccion',validarToken,actualizar,actualizarProduccion);
-produccion.delete('/eliminarProduccion/:id',validarToken,eliminarProduccion)
-export {produccion}
+
+export default produccion
+
 
 

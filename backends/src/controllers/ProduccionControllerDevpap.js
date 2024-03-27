@@ -3,7 +3,16 @@ import { validationResult } from "express-validator";
 
 export const listarProduccion = async (req, res) => {
     try {
-        const [listar] = await pool.query('SELECT * FROM produccion');
+
+
+        let sql = `SELECT produ.cantidad_produccion, 
+        produ.fk_id_programacion  AS id_programacion,  
+        pro.fecha_inicio, 
+        pro.fecha_fin
+FROM produccion AS produ
+JOIN programacion AS pro ON produ.fk_id_programacion  = pro.id_programacion`;
+
+        const [listar] = await pool.query(sql);
 
         if (listar.length > 0) {
             res.status(200).json(listar);

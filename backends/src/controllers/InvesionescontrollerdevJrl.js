@@ -4,10 +4,16 @@ import { validationResult } from 'express-validator';
 //nn
 export const listarInversiones = async (req, res) => {
     try {
-        const [listar] = await pool.query('SELECT * FROM inversiones');
+        let sql = `SELECT inver.egresos, 
+        inver.fk_id_programacion  AS id_programacion,  
+        pro.fecha_inicio, 
+        pro.fecha_fin
+FROM inversiones AS inver
+JOIN programacion AS pro ON inver.fk_id_programacion  = pro.id_programacion`;
+        const [result] = await pool.query(sql);
 
-        if (listar.length > 0) {
-            res.status(200).json(listar);
+        if (result.length > 0) {
+            res.status(200).json(result);
         } else {
             res.status(400).json({
                 status: 400,
@@ -17,7 +23,7 @@ export const listarInversiones = async (req, res) => {
     } catch (error) {
         res.status(500).json({
             status: 500,
-            message: 'error en el servidor',
+            message: 'error en el servidor'+error,
         });
     }
 };

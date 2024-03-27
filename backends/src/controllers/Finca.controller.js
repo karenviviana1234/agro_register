@@ -5,6 +5,7 @@ import { validationResult } from 'express-validator';
 //crid
 export const listarFinca = async (req, res) => {
     try {
+        
         const [result] = await pool.query("SELECT * FROM finca")
 
         if (result.length > 0 ) {

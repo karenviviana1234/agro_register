@@ -4,7 +4,15 @@ import {validationResult} from 'express-validator'
 
 export const listarlotes = async (req, res) =>{
     try{
-        const [resultado] = await pool.query("select * from lotes")
+
+        let sql = `SELECT lo.nombre, lo.longitud, lo.latitud, 
+        lo.fk_id_finca AS id_finca,  
+        fin.nombre_finca, 
+        fin.longitud, 
+        fin.latitud
+ FROM lotes AS lo
+ JOIN finca AS fin ON lo.fk_id_finca = fin.id_finca`;
+        const [resultado] = await pool.query(sql)
 
         if (resultado.length > 0){
             res.status(200).json(resultado)

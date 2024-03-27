@@ -4,8 +4,14 @@ import { validationResult } from 'express-validator';
 
 export const listar = async (req,res) => {
     try{
-    let sql = 'SELECT * FROM cultivo';
-    const [result] = await pool.query(sql);
+        let sql = `SELECT cul.fecha_inicio,cul.cantidad_sembrada, 
+                    lo.nombre, lo.longitud,lo.latitud,
+                    var.nombre_variedad, var.tipo_cultivo
+        FROM cultivo AS cul
+        JOIN lotes AS lo ON cul.fk_id_lote = lo.id_lote
+        JOIN variedad AS var ON cul.fk_id_variedad = var.id_variedad;`;
+
+     const [result] = await pool.query(sql);
     if (result.length > 0) {
       res.status(200).json(result);
     }else{

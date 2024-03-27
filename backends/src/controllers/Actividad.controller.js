@@ -5,21 +5,30 @@ import { validationResult } from 'express-validator';
 //listar
 export const listarA = async (req, res) => {
     try {
-        const [result] = await pool.query("SELECT * FROM actividad")
+        let sql = `SELECT ac.nombre_actividad, 
+        ac.tiempo, 
+        ac.observaciones,
+        ac.valor_actividad, ac.fk_id_variedad AS id_variedad, v.nombre_variedad, v.tipo_cultivo 
+        FROM actividad AS ac 
+        JOIN variedad AS v ON ac.fk_id_variedad = v.id_variedad;
+         `; 
 
-        if (result.length > 0 ) {
-            res.status(200).json(result)
+        const [result] = await pool.query(sql);
+
+        if (result.length > 0) {
+            res.status(200).json(result);
         } else {
             res.status(400).json({
-                "Mensaje":"No hay actividades que listar"
-            })
+                "Mensaje": "No hay actividades que listar"
+            });
         }
     } catch (error) {
+        console.error(error); 
         res.status(500).json({
-            "Mensaje": "error en el sistema"
-        })
+            "Mensaje": "Error en el sistema"
+        });
     }
-}
+};
 export const RegistrarA = async (req, res) => {
     try {
         const errors = validationResult(req);
